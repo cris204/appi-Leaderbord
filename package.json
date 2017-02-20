@@ -8,5 +8,9 @@
     "start": "node api.js"
   },
   "author": "yo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "devDependencies": {}
 }
