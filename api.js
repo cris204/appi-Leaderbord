@@ -118,7 +118,4 @@ if(queryString=="{}"){
 }
 
 })
-
-
-
-app.listen(process.argv.PORT|| 3000)
+app.listen(process.env.PORT|| 3000)
