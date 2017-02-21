@@ -47,7 +47,7 @@ users.get("/:id?",function (req,res) {
 })
 
 
-leaderboard.get("/",function (req,res) {
+leaderboard.get("/:id?",function (req,res) {
   var datosLeaderboard=[
 
                {
@@ -99,12 +99,21 @@ leaderboard.get("/",function (req,res) {
 
               }
   ]
+
   var query=req.query;
   var page=req.query.page;
   var pageSize=req.query.pageSize;
   var formula= ((pageSize*page)-(pageSize-1))-1;
   var queryString=JSON.stringify(query);
-
+  id=req.params.id;
+  if(id!=null){
+      if(id==10){
+          res.send("position "+ datosLeaderboard[0].position );
+      //  res.send(Object.keys(datosLeaderboard));
+        }else {
+          res.send("no existe");
+        }
+    }else{
 if(queryString=="{}"){
     res.send(datosLeaderboard);
 }else {
@@ -135,6 +144,6 @@ if(queryString=="{}"){
     }
 
 }
-
+}
 })
 app.listen(process.env.PORT|| 3000)
