@@ -1,9 +1,15 @@
 var express =require("express");
+var bodyParser=require("body-parser");
 var users=express();
 var leaderboard=express();
 var app=express();
-
+var body;
 var id;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+
 app.get("/",function (req,res) {
 res.send(":v menú :v ");
 })
@@ -11,8 +17,21 @@ res.send(":v menú :v ");
 app.use("/users",users);
 app.use("/leaderboard",leaderboard);
 
+users.post("/",function(req,res){
+   body=req.body;
+  console.log(body);
+
+})
+
 users.get("/:id?",function (req,res) {
-    var datos={ Username: "hoyos", score: "15"}
+    var bscore;
+
+    try{
+      bscore = body.score;
+    }catch(err){
+      bscore="100";
+    }
+    var datos={ Username: "hoyos", score: bscore ,id:"15"}
     id=req.params.id;
       if(id!=null){
           if(id==15){
