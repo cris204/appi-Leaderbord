@@ -87,7 +87,7 @@ users.get("/:id?",function (req,res) {
       {
 
      "name":baseDatos[0].name,
-     "score":bscore;
+     "score":bscore
 
      },
      {
