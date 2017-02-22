@@ -85,30 +85,35 @@ users.get("/:id?",function (req,res) {
     var users=[
 
       {
-     "id":baseDatos[0].id,
+
      "name":baseDatos[0].name,
-
+     "score":bscore;
 
      },
      {
-       "id":baseDatos[1].id,
-       "name":baseDatos[1].name
+
+       "name":baseDatos[1].name,
+        "score":baseDatos[1].score
      },
      {
-       "id":baseDatos[2].id,
-       "name":baseDatos[2].name
+
+       "name":baseDatos[2].name,
+        "score":baseDatos[2].score
       },
      {
-       "id":baseDatos[3].id,
-       "name":baseDatos[3].name
+
+       "name":baseDatos[3].name,
+        "score":baseDatos[3].score
       },
      {
-       "id":baseDatos[4].id,
-       "name":baseDatos[4].name
+
+       "name":baseDatos[4].name,
+       "score":baseDatos[4].score
       },
      {
-       "id":baseDatos[5].id,
-       "name":baseDatos[5].name
+
+       "name":baseDatos[5].name,
+        "score":baseDatos[0].score
      }
   ]
     id=req.params.id;
@@ -138,24 +143,24 @@ leaderboard.get("/:id?",function (req,res) {
 
    },
    {
-   "position":2,
-   "name":"montes"
+     "position":baseDatos[1].position,
+     "name":baseDatos[1].name
    },
    {
-   "position":3,
-   "name":"agus"
+     "position":baseDatos[2].position,
+     "name":baseDatos[2].name
     },
    {
-   "position":4,
-   "name":"jara"
+     "position":baseDatos[3].position,
+     "name":baseDatos[3].name
     },
    {
-   "position":5,
-   "name":"cristian"
+     "position":baseDatos[4].position,
+     "name":baseDatos[4].name
     },
    {
-   "position":6,
-   "name":"nn"
+     "position":baseDatos[5].position,
+     "name":baseDatos[5].name
    }
 ]
   var query=req.query;
