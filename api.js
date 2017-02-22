@@ -31,23 +31,27 @@ users.get("/:id?",function (req,res) {
     }catch(err){
       bscore="100";
     }
-    var datos={ Username: "hoyos", score: bscore ,id:"15"}
+    var datos=[{ Username: "hoyos", score: bscore ,id:"15"},
+                { Username: "otro :v", score: 1000 ,id:"no definido"}
+  ]
     id=req.params.id;
       if(id!=null){
           if(id==15){
-              res.send(datos);
+              res.send(datos[0]);
             }else {
               res.send("no existe");
             }
         }else {
           {
-                res.send(JSON.stringify(datos)+" otro");
+                res.send((datos));
+
           }
       }
 })
 
 
 leaderboard.get("/:id?",function (req,res) {
+
   var datosLeaderboard=[
 
                {
@@ -99,7 +103,11 @@ leaderboard.get("/:id?",function (req,res) {
 
               }
   ]
+  var datosposition={
 
+      "position":datosLeaderboard.position,
+
+   };
   var query=req.query;
   var page=req.query.page;
   var pageSize=req.query.pageSize;
@@ -108,7 +116,7 @@ leaderboard.get("/:id?",function (req,res) {
   id=req.params.id;
   if(id!=null){
       if(id==10){
-          res.send("position "+ datosLeaderboard[0].position );
+          res.send("position "+JSON.stringify( datosposition[0]) );
       //  res.send(Object.keys(datosLeaderboard));
         }else {
           res.send("no existe");
