@@ -5,6 +5,7 @@ var leaderboard=express();
 var app=express();
 var body;
 var id;
+var bscore;
 var baseDatos=
 [
              {
@@ -55,13 +56,31 @@ res.send(":v menú :v ");
 app.use("/users",users);
 app.use("/leaderboard",leaderboard);
 
-users.post("/",function(req,res){
-   body=req.body;
+users.post("/:id?",function(req,res){
+     body=req.body;
+     id=req.params.id;
+     bscore=body.score;
+
+  if(id!=null){
+    for (var i = 0; i < baseDatos.length; i++) {
+
+      if(id==baseDatos[i].id ){
+          baseDatos[i].score=bscore;
+
+          break;
+
+        }
+        if(i==baseDatos.length-1){
+          res.send("no existe");
+        }
+
+      }
+}
 
 })
 
 users.get("/:id?",function (req,res) {
-    var bscore;
+
 
     try{
       bscore = body.score;
@@ -104,9 +123,7 @@ users.get("/:id?",function (req,res) {
       if(id!=null){
         for (var i = 0; i < baseDatos.length; i++) {
 
-          if(id==baseDatos[i].id){
-              baseDatos[i].score=bscore;
-            //  users[i].score=baseDatos[i].score;
+          if(id==baseDatos[i].id ){
               res.send(users[i]);
               break;
 
@@ -161,12 +178,9 @@ leaderboard.get("/:id?",function (req,res) {
   id=req.params.id;
   if(id!=null){
     for (var i = 0; i < baseDatos.length; i++) {
-
-
       if(id==baseDatos[i].id){
           res.send(datosposition[i]);
           break;
-
         }
         if(i==baseDatos.length-1){
           res.send("no existe");
