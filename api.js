@@ -52,8 +52,8 @@ users.get("/:id?",function (req,res) {
 
 leaderboard.get("/:id?",function (req,res) {
 
-  var datosLeaderboard=[
-
+  var datosLeaderboard=
+[
                {
 
               "position":1,
@@ -81,7 +81,7 @@ leaderboard.get("/:id?",function (req,res) {
               {
 
               "position":4,
-              "id": "12",
+              "id": "13",
               "name":"jara",
               "score":200
 
@@ -89,7 +89,7 @@ leaderboard.get("/:id?",function (req,res) {
               {
 
               "position":5,
-              "id": "12",
+              "id": "14",
               "name":"cristian",
               "score":100
 
@@ -97,17 +97,63 @@ leaderboard.get("/:id?",function (req,res) {
               {
 
               "position":6,
-              "id": "12",
+              "id": "15",
               "name":"nn",
               "score":0
 
               }
-  ]
-  var datosposition={
+]
+  var datosposition=[
 
-      "position":datosLeaderboard.position,
+    {
 
-   };
+   "position":datosLeaderboard[0].position,
+
+   "name":datosLeaderboard[0].name,
+
+
+   },
+   {
+
+   "position":2,
+
+   "name":"montes",
+
+
+   },
+   {
+
+   "position":3,
+
+   "name":"agus",
+
+
+    },
+   {
+
+   "position":4,
+
+   "name":"jara",
+
+
+    },
+   {
+
+   "position":5,
+
+   "name":"cristian",
+
+
+    },
+   {
+
+   "position":6,
+
+   "name":"nn",
+
+
+   }
+]
   var query=req.query;
   var page=req.query.page;
   var pageSize=req.query.pageSize;
@@ -116,8 +162,8 @@ leaderboard.get("/:id?",function (req,res) {
   id=req.params.id;
   if(id!=null){
       if(id==10){
-          res.send("position "+JSON.stringify( datosposition[0]) );
-      //  res.send(Object.keys(datosLeaderboard));
+          res.send(datosposition[0] );
+
         }else {
           res.send("no existe");
         }
@@ -127,14 +173,14 @@ if(queryString=="{}"){
 }else {
   if(pageSize && page){
     try{
-        var results="";
+        var results=[];
 
         for(var i=formula;i < parseInt(formula) + parseInt(pageSize) ;i++){
 
             var verify=JSON.stringify(datosLeaderboard[i]);
 
           if(verify!=null){
-           results+=(JSON.stringify(datosLeaderboard[i]));
+           results.push((datosLeaderboard[i]));
 
           }else {
             break;
