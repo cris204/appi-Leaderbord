@@ -5,6 +5,57 @@ var leaderboard=express();
 var app=express();
 var body;
 var id;
+var baseDatos=
+[
+             {
+
+            "position":1,
+            "id": "10",
+            "name":"danilo",
+            "score":500
+
+            },
+            {
+
+            "position":2,
+            "id": "11",
+            "name":"montes",
+            "score":400
+
+            },
+            {
+
+            "position":3,
+            "id": "12",
+            "name":"agus",
+            "score":300
+
+          },
+            {
+
+            "position":4,
+            "id": "13",
+            "name":"jara",
+            "score":200
+
+          },
+            {
+
+            "position":5,
+            "id": "14",
+            "name":"cristian",
+            "score":100
+
+          },
+            {
+
+            "position":6,
+            "id": "15",
+            "name":"nn",
+            "score":0
+
+            }
+]
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -31,19 +82,45 @@ users.get("/:id?",function (req,res) {
     }catch(err){
       bscore="100";
     }
-    var datos=[{ Username: "hoyos", score: bscore ,id:"15"},
-                { Username: "otro :v", score: 1000 ,id:"no definido"}
+    var users=[
+
+      {
+     "id":baseDatos[0].id,
+     "name":baseDatos[0].name,
+
+
+     },
+     {
+       "id":baseDatos[1].id,
+       "name":baseDatos[1].name
+     },
+     {
+       "id":baseDatos[2].id,
+       "name":baseDatos[2].name
+      },
+     {
+       "id":baseDatos[3].id,
+       "name":baseDatos[3].name
+      },
+     {
+       "id":baseDatos[4].id,
+       "name":baseDatos[4].name
+      },
+     {
+       "id":baseDatos[5].id,
+       "name":baseDatos[5].name
+     }
   ]
     id=req.params.id;
       if(id!=null){
-          if(id==15){
-              res.send(datos[0]);
+          if(id==10){
+              res.send(users[0]);
             }else {
               res.send("no existe");
             }
         }else {
           {
-                res.send((datos));
+                res.send((users));
 
           }
       }
@@ -52,106 +129,33 @@ users.get("/:id?",function (req,res) {
 
 leaderboard.get("/:id?",function (req,res) {
 
-  var datosLeaderboard=
-[
-               {
 
-              "position":1,
-              "id": "10",
-              "name":"danilo",
-              "score":500
-
-              },
-              {
-
-              "position":2,
-              "id": "11",
-              "name":"montes",
-              "score":400
-
-              },
-              {
-
-              "position":3,
-              "id": "12",
-              "name":"agus",
-              "score":300
-
-            },
-              {
-
-              "position":4,
-              "id": "13",
-              "name":"jara",
-              "score":200
-
-            },
-              {
-
-              "position":5,
-              "id": "14",
-              "name":"cristian",
-              "score":100
-
-            },
-              {
-
-              "position":6,
-              "id": "15",
-              "name":"nn",
-              "score":0
-
-              }
-]
   var datosposition=[
 
     {
-
-   "position":datosLeaderboard[0].position,
-
-   "name":datosLeaderboard[0].name,
-
+   "position":baseDatos[0].position,
+   "name":baseDatos[0].name
 
    },
    {
-
    "position":2,
-
-   "name":"montes",
-
-
+   "name":"montes"
    },
    {
-
    "position":3,
-
-   "name":"agus",
-
-
+   "name":"agus"
     },
    {
-
    "position":4,
-
-   "name":"jara",
-
-
+   "name":"jara"
     },
    {
-
    "position":5,
-
-   "name":"cristian",
-
-
+   "name":"cristian"
     },
    {
-
    "position":6,
-
-   "name":"nn",
-
-
+   "name":"nn"
    }
 ]
   var query=req.query;
@@ -169,7 +173,7 @@ leaderboard.get("/:id?",function (req,res) {
         }
     }else{
 if(queryString=="{}"){
-    res.send(datosLeaderboard);
+    res.send(baseDatos);
 }else {
   if(pageSize && page){
     try{
@@ -177,10 +181,10 @@ if(queryString=="{}"){
 
         for(var i=formula;i < parseInt(formula) + parseInt(pageSize) ;i++){
 
-            var verify=JSON.stringify(datosLeaderboard[i]);
+            var verify=JSON.stringify(datosposition[i]);
 
           if(verify!=null){
-           results.push((datosLeaderboard[i]));
+           results.push((datosposition[i]));
 
           }else {
             break;
