@@ -71,26 +71,32 @@ users.get("/:id?",function (req,res) {
     var users=[
       {
      "name":baseDatos[0].name,
+     "id":baseDatos[0].id,
      "score":baseDatos[0].score
      },
      {
        "name":baseDatos[1].name,
+        "id":baseDatos[1].id,
        "score":baseDatos[1].score
      },
      {
        "name":baseDatos[2].name,
+        "id":baseDatos[2].id,
         "score":baseDatos[2].score
       },
      {
        "name":baseDatos[3].name,
+        "id":baseDatos[3].id,
         "score":baseDatos[3].score
       },
      {
        "name":baseDatos[4].name,
+        "id":baseDatos[4].id,
        "score":baseDatos[4].score
       },
      {
        "name":baseDatos[5].name,
+        "id":baseDatos[5].id,
         "score":baseDatos[5].score
      }
   ]
