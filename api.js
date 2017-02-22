@@ -8,58 +8,45 @@ var id;
 var baseDatos=
 [
              {
-
             "position":1,
             "id": "10",
             "name":"danilo",
             "score":500
-
             },
             {
-
             "position":2,
             "id": "11",
             "name":"montes",
             "score":400
-
             },
             {
-
             "position":3,
             "id": "12",
             "name":"agus",
             "score":300
-
           },
             {
-
             "position":4,
             "id": "13",
             "name":"jara",
             "score":200
-
           },
             {
-
             "position":5,
             "id": "14",
             "name":"cristian",
             "score":100
-
           },
             {
-
             "position":6,
             "id": "15",
             "name":"nn",
             "score":0
-
             }
 ]
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
 
 app.get("/",function (req,res) {
 res.send(":v menú :v ");
@@ -70,7 +57,6 @@ app.use("/leaderboard",leaderboard);
 
 users.post("/",function(req,res){
    body=req.body;
-  console.log(body);
 
 })
 
@@ -83,50 +69,50 @@ users.get("/:id?",function (req,res) {
       bscore="100";
     }
     var users=[
-
       {
-
      "name":baseDatos[0].name,
-     "score":bscore
-
+     "score":baseDatos[0].score
      },
      {
-
        "name":baseDatos[1].name,
-        "score":baseDatos[1].score
+       "score":baseDatos[1].score
      },
      {
-
        "name":baseDatos[2].name,
         "score":baseDatos[2].score
       },
      {
-
        "name":baseDatos[3].name,
         "score":baseDatos[3].score
       },
      {
-
        "name":baseDatos[4].name,
        "score":baseDatos[4].score
       },
      {
-
        "name":baseDatos[5].name,
-        "score":baseDatos[0].score
+        "score":baseDatos[5].score
      }
   ]
     id=req.params.id;
       if(id!=null){
-          if(id==10){
-              res.send(users[0]);
-            }else {
+        for (var i = 0; i < baseDatos.length; i++) {
+
+          if(id==baseDatos[i].id){
+              baseDatos[i].score=bscore;
+            //  users[i].score=baseDatos[i].score;
+              res.send(users[i]);
+              break;
+
+            }
+            if(i==baseDatos.length-1){
               res.send("no existe");
             }
+
+          }
         }else {
           {
                 res.send((users));
-
           }
       }
 })
@@ -134,13 +120,11 @@ users.get("/:id?",function (req,res) {
 
 leaderboard.get("/:id?",function (req,res) {
 
-
   var datosposition=[
 
     {
    "position":baseDatos[0].position,
    "name":baseDatos[0].name
-
    },
    {
      "position":baseDatos[1].position,
@@ -170,12 +154,18 @@ leaderboard.get("/:id?",function (req,res) {
   var queryString=JSON.stringify(query);
   id=req.params.id;
   if(id!=null){
-      if(id==10){
-          res.send(datosposition[0] );
+    for (var i = 0; i < baseDatos.length; i++) {
 
-        }else {
+
+      if(id==baseDatos[i].id){
+          res.send(datosposition[i]);
+          break;
+
+        }
+        if(i==baseDatos.length-1){
           res.send("no existe");
         }
+      }
     }else{
 if(queryString=="{}"){
     res.send(baseDatos);
@@ -203,10 +193,10 @@ if(queryString=="{}"){
     }
   }else {
 
-    res.send("datos erroneos");
-    }
+      res.send("datos erroneos");
+      }
 
-}
-}
+    }
+  }
 })
 app.listen(process.env.PORT|| 3000)
