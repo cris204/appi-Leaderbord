@@ -49,7 +49,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/",function (req,res) {
-res.send(":v menú :v ");
+res.send(":v menú :v los ids son: 10, 11, 12, 13, 14, 15");
 })
 
 app.use("/users",users);
