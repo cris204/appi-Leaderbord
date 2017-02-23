@@ -45,7 +45,6 @@ var baseDatos=
             "score":0
             }
 ]
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -60,28 +59,20 @@ users.post("/:id?",function(req,res){
      body=req.body;
      id=req.params.id;
      bscore=body.score;
-
   if(id!=null){
     for (var i = 0; i < baseDatos.length; i++) {
-
       if(id==baseDatos[i].id ){
           baseDatos[i].score=bscore;
-
           break;
-
         }
         if(i==baseDatos.length-1){
           res.send("no existe");
         }
-
       }
 }
-
 })
 
 users.get("/:id?",function (req,res) {
-
-
     try{
       bscore = body.score;
     }catch(err){
@@ -120,6 +111,7 @@ users.get("/:id?",function (req,res) {
      }
   ]
     id=req.params.id;
+
       if(id!=null){
         for (var i = 0; i < baseDatos.length; i++) {
 
@@ -139,7 +131,6 @@ users.get("/:id?",function (req,res) {
           }
       }
 })
-
 
 leaderboard.get("/:id?",function (req,res) {
 
