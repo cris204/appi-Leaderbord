@@ -1,0 +1,182 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# RPG Multijugador
+
+
+
+## Characters [/id/Characters/{?unlock_code}]
+
+### List All Characters [GET]
+
++ Response 200 (application/json)
+
+        [
+            {   
+                "Character code":1,
+                "Point to unlock":250,
+                "Name":"Grougal",
+                "Type":"Fire Warrior",
+                "Life":200,
+                "Attack":25,
+                "Special Attack":50,
+                "Defense":20,
+                "Special Defense":50
+            
+            
+            },
+            {
+                "Character code":2,
+                "Point to unlock":250,
+                "Name":"Samantha",
+                "Type":"Grass archer",
+                "Life":200,
+                "Attack":25,
+                "Special Attack":50,
+                "Defense":20,
+                "Special Defense":50
+            },
+            {
+                "Character code":3,
+                "Point to unlock":250,
+                "Name":"Nefarian",
+                "Type":"water Necromancer",
+                "Life":200,
+                "Attack":25,
+                "Special Attack":50,
+                "Defense":20,
+                "Special Defense":50
+            }
+            
+        ]
+
+
+### Unlock [POST]
+
+
++ Request (application/json)
+
+        {
+            "Character code":1,
+            "player points":300
+        }
+
++ Response 200 (application/json)
+
+## Stats [/id/Characters/{?character_Code,skill}]
+
+### Stats [POST]
+
+
++ Request (application/json)
+
+        {
+        
+               
+                "Character code":1,
+                "Skill Points":50,
+                 
+                "Life":200,
+                "Attack":25,
+                "Special Attack":50,
+                "Defense":20,
+                "Special Defense":50
+        }
+        
++ Response 200 (application/json)
+
+        [
+                "Skill Points":10,
+                "Character code":1,
+                "Life":200,
+                "Attack":65,
+                "Special Attack":50,
+                "Defense":20,
+                "Special Defense":50
+        
+        ]
+        
+## Team [/id/profile/team]
+
+### MyTeam [GET]
+
++ Response 200 (application/json)   
+
+        {
+            "My Team":
+            [   
+                {
+                  "First champ": "Grougal",
+                  "Second champ": "Nefarian"
+                }
+            ]
+        }
+        
+### ChangeTeam [POST]
+
++ Request (application/json)   
+
+        {
+            "change":[
+            
+                 "First champ": "Grougal",
+                 "Second champ": "Samantha"
+            
+            ]
+            
+        }
+        
++ Response 200 (application/json)
+
+## Match [/match/result]
+
+### MatchResult [POST]
+
+
++ Request (application/json)
+
+           {
+                "Players ":
+                [{
+                    "id":1,
+                    "Score player 1":200
+                    
+                    },
+                    {
+                    "id":2,
+                    "Score player 2":100
+                }]
+            
+           }
+        
++ Response 200 (application/json)
+
+        {
+             "Result":
+                [{
+                    "id":1,
+                    "player 1":"Win"
+                    },
+                    {
+                    "id":2,
+                    "player 2":"Lose" 
+                }]
+        
+        }
+### Scores [GET]
+
+
++ Response 200 (application/json)
+
+        {
+             "New Scores":
+                [{
+                    "id":1,
+                    "Score player 1":250
+                    },
+                    {
+                    "id":2,
+                    "Score player 2":50 
+                }]
+        
+        }
